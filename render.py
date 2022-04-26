@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import re
 import sys
 
 import lxml.etree
@@ -11,6 +10,8 @@ try:
     modname = fname.split('/')[-1].replace('_', '/')
     with open(fname) as f:
         orig = f.read()
+        if not orig.strip():
+            sys.exit()
         raw = orig.replace((' ' * 6) + 'Documentation',
                           f'Documentation for {modname}')
         if orig == raw:
